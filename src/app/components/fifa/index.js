@@ -1,7 +1,9 @@
-import FifaComponent from "./FifaComponent";
+import List from "./List";
+import Form from "./Form";
 
-export { FifaComponent };
+export { List, Form };
 
 export default {
-  FifaComponent,
+  List,
+  Form,
 };

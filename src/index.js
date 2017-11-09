@@ -48,12 +48,7 @@ class AppProvider extends React.Component {
       store,
       {
         blacklist: [
-          "encryptionKey",
-          "passwordLastUpdated",
-          "reports",
-          "files",
-          "snackbar",
-          "userActions",
+          "fifa",
         ],
       },
       () => {
