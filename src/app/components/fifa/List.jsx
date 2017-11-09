@@ -1,23 +1,31 @@
 import React from "react";
-import { array } from "prop-types";
+import { bool, array } from "prop-types";
+import { Paper } from "material-ui";
 
 const List = props => {
+  const ListCompoent = props.data.map(item => {
+    return (
+      <Paper key={item.match_number}>
+        <p>Match number: {item.match_number}</p>
+        <p>Location: {item.location}</p>
+        <p>Time: {item.datetime}</p>
+      </Paper>
+    );
+  });
+
+  const ErrorCompoent = (
+    <p className="text-warning">Error! Please try again!</p>
+  );
+
   return (
-    <ul className="List">
-      {props.data.map(item => {
-        return (
-          <li key={item.match_number}>
-            <p>{item.match_number}</p>
-            <p>{item.location}</p>
-            <p>{item.datetime}</p>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="List">
+      {props.apiFail ? ErrorCompoent : ListCompoent}
+    </div>
   );
 };
 
 List.propTypes = {
+  apiFail: bool.isRequired,
   data: array.isRequired,
 };
 

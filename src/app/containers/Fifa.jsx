@@ -17,6 +17,7 @@ class Fifa extends React.Component {
       formErrors: {
         countryId: "",
       },
+      apiFail: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,8 +41,9 @@ class Fifa extends React.Component {
     try {
       this.setState({ formErrors: {} });
       await this.props.getCountryFifa(this.state.countryId);
+      this.setState({ apiFail: false });
     } catch (err) {
-      console.log(err);
+      this.setState({ apiFail: true });
     }
     this.setState({ isLoading: false });
   }
@@ -68,7 +70,7 @@ class Fifa extends React.Component {
           countryId={this.state.countryId}
           isLoading={this.state.isLoading}
         />
-        <List data={this.props.country} />
+        <List data={this.props.country} apiFail={this.state.apiFail} />
       </div>
     );
   }
